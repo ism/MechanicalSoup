@@ -234,6 +234,11 @@ class StatefulBrowser(Browser):
 
         return self.form
 
+    def update_state(self, resp):
+        """Update state of browser with resp returned by Submit"""
+        self.__state = _BrowserState(
+            page=resp.soup, url=resp.url, request=resp.request)
+
     def submit_selected(self, btnName=None, update_state=True,
                         *args, **kwargs):
         """Submit the form that was selected with :func:`select_form`.
